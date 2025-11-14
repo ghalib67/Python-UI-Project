@@ -2,9 +2,9 @@ from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QVBoxLayout, QHBoxLayout, QPushButton,
     QLineEdit, QLabel, QListWidget, QGridLayout,
-    QDialog, QScrollArea, QSizePolicy
+    QDialog, QScrollArea, QSizePolicy,QGraphicsDropShadowEffect
 )
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QColor 
 from PyQt6.QtCore import Qt
 import sys
 
@@ -38,7 +38,11 @@ class contentCard(QWidget):
     
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("background-color: white;")
+        self.setStyleSheet("""
+            background-color: white;
+            border-radius: 15px;
+        """)
+        
         layout = QVBoxLayout()
         label = QLabel("Main Hub")
         label.setStyleSheet("color: black;")
