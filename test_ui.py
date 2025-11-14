@@ -25,7 +25,18 @@ class MainHub(QWidget):
         super().__init__()
         self.setStyleSheet("background-color: black;")
         layout = QVBoxLayout()
-        label = QLabel("Sidebar")
+        label = QLabel("Main Hub")
+        label.setStyleSheet("color: white; font-size: 20px;")
+        layout.addWidget(label)
+        self.setLayout(layout)
+
+class TitleCard(QWidget):
+    
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color: black;")
+        layout = QVBoxLayout()
+        label = QLabel("Main Hub")
         label.setStyleSheet("color: white; font-size: 20px;")
         layout.addWidget(label)
         self.setLayout(layout)
