@@ -16,6 +16,10 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Task Manager App")
         self.setMinimumSize(900,700)
         #The main widget
+        main_widget = QWidget()
+        self.setCentralWidget(main_widget)
+        self.h_layout = QHBoxLayout()
+        
 
 
 app = QApplication(sys.argv)
