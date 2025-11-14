@@ -47,10 +47,21 @@ class MainHub(QWidget):
         super().__init__()
         self.setStyleSheet("background-color: black;")
         layout = QVBoxLayout()
-        label = QLabel("Main Hub")
-        label.setStyleSheet("color: white; font-size: 20px;")
+        grid = QGridLayout()
+        main_widget = QWidget()
+        main_widget.setStyleSheet("background-color: black;")
+        row = 0
+        col = 0
+        for i in range(7):
+            grid.addWidget(contentCard(), row, col)
+            col += 1
+            if col >= 3:  # 3 columns for example
+                col = 0
+                row += 1
+        
+        main_widget.setLayout(grid)
         layout.addWidget(TitleCard(),1)
-        layout.addWidget(label,4)
+        layout.addWidget(main_widget,4)
         self.setLayout(layout)
 
 class MainWindow(QMainWindow):
