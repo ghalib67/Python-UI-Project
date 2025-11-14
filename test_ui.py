@@ -45,8 +45,19 @@ class SideBar(QFrame):
         add_task = QPushButton("Add a task")
         add_task.setFixedSize(150, 40)
 
+        # Focus mode button (no functionality as requested)
+        focus_btn = QPushButton("Focus mode")
+        focus_btn.setFixedSize(150, 40)
+
+        # Time label (static placeholder)
+        time_label = QLabel("Time now XXXX")
+        time_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        time_label.setStyleSheet("color: white;")
+
         layout.addWidget(label)
+        layout.addWidget(time_label)
         layout.addWidget(add_task)
+        layout.addWidget(focus_btn)
 
         self.setLayout(layout)
 
