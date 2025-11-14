@@ -18,9 +18,14 @@ class MainWindow(QMainWindow):
         #The main widget
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
+        #creating the sidebar
+        sidebar = QWidget()
+        sidebar.setStyleSheet("background-color: black;")
+        #main hub area
+        main_hub = QWidget()
+        main_hub.setStyleSheet("background-color: black;")
+        #Main layout
         self.h_layout = QHBoxLayout()
-        
-
 
 app = QApplication(sys.argv)
 window = MainWindow()
