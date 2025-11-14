@@ -12,7 +12,10 @@ class SideBar(QWidget):
     
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("background-color: #1a1a1a;")
+        self.setStyleSheet("""
+            background-color: #1a1a1a;
+            border-radius: 15px;
+        """)
         layout = QVBoxLayout()
         label = QLabel("Sidebar")
         label = QLabel()
@@ -27,7 +30,10 @@ class TitleCard(QWidget):
     
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("background-color: black;")
+        self.setStyleSheet("""
+            background-color: #1a1a1a;
+            border-radius: 15px;
+        """)
         layout = QVBoxLayout()
         label = QLabel("Main Hub")
         label.setStyleSheet("color: white; font-size: 20px;")
@@ -53,7 +59,10 @@ class MainHub(QWidget):
     
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("background-color: black;")
+        self.setStyleSheet("""
+            background-color: #1a1a1a;
+            border-radius: 15px;
+        """)
         layout = QVBoxLayout()
         grid = QGridLayout()
         main_widget = QWidget()
