@@ -99,7 +99,9 @@ class MainWindow(QMainWindow):
         self.h_layout = QHBoxLayout()
         self.h_layout.addWidget(self.sidebar,1)
         self.h_layout.addWidget(main_hub,4)
-        
+        self.h_layout.setSpacing(0)
+        self.h_layout.setContentsMargins(0, 0, 0, 0)
+
         main_widget.setLayout(self.h_layout)
 
 app = QApplication(sys.argv)
