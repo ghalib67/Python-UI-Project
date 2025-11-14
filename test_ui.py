@@ -113,7 +113,7 @@ class MainHub(QWidget):
                 row += 1
         
         main_widget.setLayout(grid)
-        layout.addWidget(TitleCard(),1)
+        #layout.addWidget(TitleCard(),1)
         layout.addWidget(main_widget,4)
         self.setLayout(layout)
 
