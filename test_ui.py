@@ -8,23 +8,48 @@ from PyQt6.QtGui import QPixmap, QColor
 from PyQt6.QtCore import Qt
 import sys
 
-class SideBar(QWidget):
-    
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
+
+class SideBar(QFrame):
     def __init__(self):
         super().__init__()
+
+        self.setFixedWidth(230)
+
+        # Use QFrame + stylesheet for rounded corners
+        self.setFrameShape(QFrame.Shape.StyledPanel)
         self.setStyleSheet("""
-            background-color: #1a1a1a;
-            border-radius: 15px;
+            QFrame {
+                background-color: #1a1a1a;
+                border-radius: 15px;
+            }
+            QPushButton {
+                border-radius: 20px;
+                background-color: green;
+            }
         """)
+
         layout = QVBoxLayout()
-        label = QLabel("Sidebar")
+        layout.setContentsMargins(15, 15, 15, 15)
+        layout.setSpacing(10)
+
+        # Image
         label = QLabel()
-        pixmap = QPixmap("images/1h8LDrT_.jpeg")
-        pixmap = pixmap.scaled(190, 190, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio)
+        pixmap = QPixmap("images/1h8LDrT_.jpeg").scaled(120, 120, Qt.AspectRatioMode.KeepAspectRatio)
         label.setPixmap(pixmap)
-        label.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+        label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+
+        # Button
+        add_task = QPushButton("Add a task")
+        add_task.setFixedSize(150, 40)
+
         layout.addWidget(label)
+        layout.addWidget(add_task)
+
         self.setLayout(layout)
+
 
 class TitleCard(QWidget):
     
