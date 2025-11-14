@@ -17,9 +17,9 @@ class SideBar(QWidget):
         label = QLabel("Sidebar")
         label = QLabel()
         pixmap = QPixmap("images/1h8LDrT_.jpeg")
-        pixmap = pixmap.scaled(40, 40, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio)
+        pixmap = pixmap.scaled(190, 190, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio)
         label.setPixmap(pixmap)
-        label.setAlignment()
+        label.setAlignment(Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
         layout.addWidget(label)
         self.setLayout(layout)
 
