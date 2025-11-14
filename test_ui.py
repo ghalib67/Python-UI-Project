@@ -29,6 +29,17 @@ class TitleCard(QWidget):
         label.setStyleSheet("color: white; font-size: 20px;")
         layout.addWidget(label)
         self.setLayout(layout)
+
+class contentCard(QWidget):
+    
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color: white;")
+        layout = QVBoxLayout()
+        label = QLabel("Main Hub")
+        label.setStyleSheet("color: black;")
+        layout.addWidget(label)
+        self.setLayout(layout)
         
 class MainHub(QWidget):
     
@@ -41,7 +52,7 @@ class MainHub(QWidget):
         layout.addWidget(TitleCard(),1)
         layout.addWidget(label,4)
         self.setLayout(layout)
-        
+
 class MainWindow(QMainWindow):
     
     def __init__(self):
