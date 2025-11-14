@@ -8,6 +8,28 @@ from PyQt6.QtWidgets import (
 from PyQt6.QtCore import Qt
 import sys
 
+class SideBar(QWidget):
+    
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color: black;")
+        layout = QVBoxLayout()
+        label = QLabel("Sidebar")
+        label.setStyleSheet("color: white; font-size: 20px;")
+        layout.addWidget(label)
+        self.setLayout(layout)
+        
+class MainHub(QWidget):
+    
+    def __init__(self):
+        super().__init__()
+        self.setStyleSheet("background-color: black;")
+        layout = QVBoxLayout()
+        label = QLabel("Sidebar")
+        label.setStyleSheet("color: white; font-size: 20px;")
+        layout.addWidget(label)
+        self.setLayout(layout)
+        
 class MainWindow(QMainWindow):
     
     def __init__(self):
@@ -19,14 +41,12 @@ class MainWindow(QMainWindow):
         main_widget = QWidget()
         self.setCentralWidget(main_widget)
         #creating the sidebar
-        sidebar = QWidget()
-        sidebar.setStyleSheet("background-color: black;")
+        self.sidebar = SideBar()
         #main hub area
-        main_hub = QWidget()
-        main_hub.setStyleSheet("background-color: black;")
+        main_hub = MainHub()
         #Main layout
         self.h_layout = QHBoxLayout()
-        self.h_layout.addWidget(sidebar,1)
+        self.h_layout.addWidget(self.sidebar,1)
         self.h_layout.addWidget(main_hub,4)
         
         main_widget.setLayout(self.h_layout)
