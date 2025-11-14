@@ -12,13 +12,14 @@ class SideBar(QWidget):
     
     def __init__(self):
         super().__init__()
-        self.setStyleSheet("background-color: black;")
+        self.setStyleSheet("background-color: #1a1a1a;")
         layout = QVBoxLayout()
         label = QLabel("Sidebar")
         label = QLabel()
         pixmap = QPixmap("images/1h8LDrT_.jpeg")
         pixmap = pixmap.scaled(40, 40, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio)
         label.setPixmap(pixmap)
+        label.setAlignment()
         layout.addWidget(label)
         self.setLayout(layout)
 
