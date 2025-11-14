@@ -4,7 +4,7 @@ from PyQt6.QtWidgets import (
     QLineEdit, QLabel, QListWidget, QGridLayout,
     QDialog, QScrollArea, QSizePolicy
 )
-
+from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 import sys
 
@@ -15,7 +15,10 @@ class SideBar(QWidget):
         self.setStyleSheet("background-color: black;")
         layout = QVBoxLayout()
         label = QLabel("Sidebar")
-        label.setStyleSheet("color: white; font-size: 20px;")
+        label = QLabel()
+        pixmap = QPixmap("images/1h8LDrT_.jpeg")
+        pixmap = pixmap.scaled(40, 40, aspectRatioMode=Qt.AspectRatioMode.KeepAspectRatio)
+        label.setPixmap(pixmap)
         layout.addWidget(label)
         self.setLayout(layout)
 
