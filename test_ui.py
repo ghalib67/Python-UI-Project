@@ -3,6 +3,7 @@ from PyQt6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QPushButton,
     QLineEdit, QLabel, QListWidget, QGridLayout,
     QDialog, QScrollArea, QSizePolicy,QGraphicsDropShadowEffect,
+    QSpacerItem, QCheckBox, QFrame
     
 )
 from PyQt6.QtGui import QPixmap, QColor, QIcon
@@ -19,7 +20,6 @@ class SideBar(QFrame):
 
         self.setFixedWidth(230)
 
-        # Use QFrame + stylesheet for rounded corners
         self.setFrameShape(QFrame.Shape.StyledPanel)
         self.setStyleSheet("""
             QFrame {
@@ -36,21 +36,18 @@ class SideBar(QFrame):
         layout.setContentsMargins(15, 15, 15, 15)
         layout.setSpacing(10)
 
-        # Image
         label = QLabel()
         pixmap = QPixmap("images/1h8LDrT_.jpeg").scaled(120, 120, Qt.AspectRatioMode.KeepAspectRatio)
         label.setPixmap(pixmap)
         label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
 
-        # Button
         add_task = QPushButton("Add a task")
         add_task.setFixedSize(150, 40)
 
-        # Focus mode button (no functionality as requested)
+
         focus_btn = QPushButton("Focus mode")
         focus_btn.setFixedSize(150, 40)
 
-        # Time label (static placeholder)
         time_label = QLabel("Time now XXXX")
         time_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         time_label.setStyleSheet("color: white;")
@@ -77,20 +74,29 @@ class TitleCard(QWidget):
         layout.addWidget(label)
         self.setLayout(layout)
 
-class contentCard(QWidget):
-    
-    def __init__(self):
+class contentCard(QFrame):
+    def __init__(self, title="Task 1"):
         super().__init__()
+
+        self.setFixedSize(220, 150)
         self.setStyleSheet("""
-            background-color: white;
-            border-radius: 15px;
+            QFrame {
+                background-color: white;
+                border-radius: 15px;
+            }
         """)
-        layout = QVBoxLayout()
-        label = QLabel("Main Hub")
-        label.setStyleSheet("color: black;")
-        layout.addWidget(label)
-        self.setLayout(layout)
-        
+        main_layout = QVBoxLayout()
+        self.button = QPushButton("Do Task")
+        self.button.setFixedSize(100,40)
+        self.button.setStyleSheet("""
+            QPushButton {
+                background-color: lightgray;
+                border-radius: 10px;
+            }
+        """)
+        main_layout.addWidget(self.button,alignment=Qt.AlignmentFlag.AlignBottom)
+
+        self.setLayout(main_layout)
 class MainHub(QWidget):
     
     def __init__(self):
