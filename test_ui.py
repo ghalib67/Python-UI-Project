@@ -3,11 +3,11 @@ from PyQt6.QtWidgets import (
     QVBoxLayout, QHBoxLayout, QPushButton,
     QLineEdit, QLabel, QListWidget, QGridLayout,
     QDialog, QScrollArea, QSizePolicy,QGraphicsDropShadowEffect,
-    QSpacerItem, QCheckBox, QFrame
+    QSpacerItem, QCheckBox, QFrame,
     
 )
 from PyQt6.QtGui import QPixmap, QColor, QIcon
-from PyQt6.QtCore import Qt
+from PyQt6.QtCore import Qt, QTimer
 import sys
 
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame
@@ -17,6 +17,8 @@ from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame, QSpacerItem, QSizePolicy
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
+
+from datetime import datetime
 
 class SideBar(QFrame):
     def __init__(self):
@@ -29,23 +31,32 @@ class SideBar(QFrame):
                 border-radius: 15px;
             }
             QPushButton#primary {
-                background-color: #FF6600;
+                background-color: #FF6600; 
                 color: white;
                 border-radius: 20px;
                 font-weight: bold;
+                font-size: 14px;
+                padding: 8px;
+            }
+            QPushButton#primary:hover {
+                background-color: #FF8533;  /* lighter orange */
             }
             QPushButton#secondary {
-                background-color: #444444;
+                background-color: #444444;  
                 color: white;
                 border-radius: 20px;
                 font-weight: normal;
+                font-size: 14px;
+                padding: 8px;
+            }
+            QPushButton#secondary:hover {
+                background-color: #666666;  /* lighter grey */
             }
         """)
 
         layout = QVBoxLayout()
         layout.setContentsMargins(15, 15, 15, 15)
         layout.setSpacing(20)
-
 
         label = QLabel()
         pixmap = QPixmap("images/1h8LDrT_.jpeg").scaled(120, 120, Qt.AspectRatioMode.KeepAspectRatio)
@@ -55,29 +66,51 @@ class SideBar(QFrame):
 
         layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
 
-
         add_task = QPushButton("Add a Task")
         add_task.setObjectName("primary")
         add_task.setFixedSize(180, 45)
+
+        shadow1 = QGraphicsDropShadowEffect()
+        shadow1.setBlurRadius(15)
+        shadow1.setXOffset(0)
+        shadow1.setYOffset(0)
+        shadow1.setColor(Qt.GlobalColor.transparent)
+        add_task.setGraphicsEffect(shadow1)
+        add_task.enterEvent = lambda e, s=shadow1: s.setColor(Qt.GlobalColor.white)
+        add_task.leaveEvent = lambda e, s=shadow1: s.setColor(Qt.GlobalColor.transparent)
         layout.addWidget(add_task, alignment=Qt.AlignmentFlag.AlignHCenter)
 
 
         focus_btn = QPushButton("Focus Mode")
         focus_btn.setObjectName("secondary")
         focus_btn.setFixedSize(180, 45)
+        shadow2 = QGraphicsDropShadowEffect()
+        shadow2.setBlurRadius(15)
+        shadow2.setXOffset(0)
+        shadow2.setYOffset(0)
+        shadow2.setColor(Qt.GlobalColor.transparent)
+        focus_btn.setGraphicsEffect(shadow2)
+        focus_btn.enterEvent = lambda e, s=shadow2: s.setColor(Qt.GlobalColor.white)
+        focus_btn.leaveEvent = lambda e, s=shadow2: s.setColor(Qt.GlobalColor.transparent)
         layout.addWidget(focus_btn, alignment=Qt.AlignmentFlag.AlignHCenter)
-
 
         layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
 
 
-        time_label = QLabel("Time now: XXXX")
-        time_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        time_label.setStyleSheet("color: #CCCCCC; font-weight: bold;")
-        layout.addWidget(time_label)
+        self.time_label = QLabel()
+        self.time_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        self.time_label.setStyleSheet("color: #CCCCCC; font-weight: bold;")
+        layout.addWidget(self.time_label)
 
         self.setLayout(layout)
+        timer = QTimer(self)
+        timer.timeout.connect(self.update_time)
+        timer.start(1000)
+        self.update_time()
 
+    def update_time(self):
+        now = datetime.now()
+        self.time_label.setText(now.strftime("Time now: %H:%M:%S"))
 
 
 class TitleCard(QWidget):
@@ -98,7 +131,7 @@ class contentCard(QFrame):
     def __init__(self, title="Task 1"):
         super().__init__()
 
-        self.setFixedSize(220, 150)
+        self.setMinimumSize(200,150)
         self.setStyleSheet("""
             QFrame {
                 background-color: white;
