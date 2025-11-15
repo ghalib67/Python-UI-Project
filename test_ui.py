@@ -2,9 +2,10 @@ from PyQt6.QtWidgets import (
     QApplication, QMainWindow, QWidget,
     QVBoxLayout, QHBoxLayout, QPushButton,
     QLineEdit, QLabel, QListWidget, QGridLayout,
-    QDialog, QScrollArea, QSizePolicy,QGraphicsDropShadowEffect
+    QDialog, QScrollArea, QSizePolicy,QGraphicsDropShadowEffect,
+    
 )
-from PyQt6.QtGui import QPixmap, QColor 
+from PyQt6.QtGui import QPixmap, QColor, QIcon
 from PyQt6.QtCore import Qt
 import sys
 
