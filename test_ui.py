@@ -14,50 +14,70 @@ from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame
 from PyQt6.QtGui import QPixmap
 from PyQt6.QtCore import Qt
 
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QLabel, QPushButton, QFrame, QSpacerItem, QSizePolicy
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtCore import Qt
+
 class SideBar(QFrame):
     def __init__(self):
         super().__init__()
 
         self.setFixedWidth(230)
-
-        self.setFrameShape(QFrame.Shape.StyledPanel)
         self.setStyleSheet("""
             QFrame {
                 background-color: #1a1a1a;
                 border-radius: 15px;
             }
-            QPushButton {
+            QPushButton#primary {
+                background-color: #FF6600;
+                color: white;
                 border-radius: 20px;
-                background-color: green;
+                font-weight: bold;
+            }
+            QPushButton#secondary {
+                background-color: #444444;
+                color: white;
+                border-radius: 20px;
+                font-weight: normal;
             }
         """)
 
         layout = QVBoxLayout()
         layout.setContentsMargins(15, 15, 15, 15)
-        layout.setSpacing(10)
+        layout.setSpacing(20)
+
 
         label = QLabel()
         pixmap = QPixmap("images/1h8LDrT_.jpeg").scaled(120, 120, Qt.AspectRatioMode.KeepAspectRatio)
         label.setPixmap(pixmap)
         label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-
-        add_task = QPushButton("Add a task")
-        add_task.setFixedSize(150, 40)
-
-
-        focus_btn = QPushButton("Focus mode")
-        focus_btn.setFixedSize(150, 40)
-
-        time_label = QLabel("Time now XXXX")
-        time_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
-        time_label.setStyleSheet("color: white;")
-
         layout.addWidget(label)
+
+        layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
+
+
+        add_task = QPushButton("Add a Task")
+        add_task.setObjectName("primary")
+        add_task.setFixedSize(180, 45)
+        layout.addWidget(add_task, alignment=Qt.AlignmentFlag.AlignHCenter)
+
+
+        focus_btn = QPushButton("Focus Mode")
+        focus_btn.setObjectName("secondary")
+        focus_btn.setFixedSize(180, 45)
+        layout.addWidget(focus_btn, alignment=Qt.AlignmentFlag.AlignHCenter)
+
+
+        layout.addSpacerItem(QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding))
+
+
+        time_label = QLabel("Time now: XXXX")
+        time_label.setAlignment(Qt.AlignmentFlag.AlignHCenter)
+        time_label.setStyleSheet("color: #CCCCCC; font-weight: bold;")
         layout.addWidget(time_label)
-        layout.addWidget(add_task)
-        layout.addWidget(focus_btn)
 
         self.setLayout(layout)
+
 
 
 class TitleCard(QWidget):
