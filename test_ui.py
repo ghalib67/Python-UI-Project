@@ -77,7 +77,7 @@ class TitleCard(QWidget):
         layout.addWidget(label)
         self.setLayout(layout)
 
-class contentCard(QWidget):
+class contentCard(QPushButton):
     
     def __init__(self):
         super().__init__()
@@ -85,7 +85,7 @@ class contentCard(QWidget):
             background-color: white;
             border-radius: 15px;
         """)
-        
+        self.setFixedSize(200,150)
         layout = QVBoxLayout()
         label = QLabel("Main Hub")
         label.setStyleSheet("color: black;")
