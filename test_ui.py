@@ -137,24 +137,59 @@ class contentCard(QFrame):
     def __init__(self, title="Task 1"):
         super().__init__()
 
-        self.setMinimumSize(200,150)
+        self.setFixedSize(250, 180)
         self.setStyleSheet("""
             QFrame {
-                background-color: white;
+                background-color: #2b2b2b;  /* dark grey background */
                 border-radius: 15px;
             }
         """)
+
         main_layout = QVBoxLayout()
-        self.button = QPushButton("Do Task")
-        self.button.setFixedSize(100,40)
-        self.button.setStyleSheet("""
+        main_layout.setContentsMargins(15, 15, 15, 15)
+        main_layout.setSpacing(10)
+
+        self.label = QLabel(title)
+        self.label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.label.setStyleSheet("color: white; font-size: 18px; font-weight: bold;")
+        main_layout.addWidget(self.label, alignment=Qt.AlignmentFlag.AlignTop | Qt.AlignmentFlag.AlignHCenter)
+
+        main_layout.addStretch()
+
+        button_layout = QHBoxLayout()
+        button_layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        button_layout.setSpacing(10)
+
+        self.do_task_btn = QPushButton("Do Task")
+        self.do_task_btn.setFixedSize(70, 30)
+        self.do_task_btn.setStyleSheet("""
             QPushButton {
-                background-color: lightgray;
+                background-color: #FF6600;  /* orange */
+                color: white;
                 border-radius: 10px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #FF8533;
             }
         """)
-        main_layout.addWidget(self.button,alignment=Qt.AlignmentFlag.AlignBottom)
+        button_layout.addWidget(self.do_task_btn)
+        self.edit_btn = QPushButton("Edit Task")
+        self.edit_btn.setFixedSize(70, 30)
+        self.edit_btn.setStyleSheet("""
+            QPushButton {
+                background-color: #444444;  /* grey */
+                color: white;
+                border-radius: 10px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #666666;
+            }
+        """)
+        button_layout.addWidget(self.edit_btn)
 
+        main_layout.addLayout(button_layout)
         self.setLayout(main_layout)
 class MainHub(QWidget):
     
@@ -173,7 +208,7 @@ class MainHub(QWidget):
         for i in range(7):
             grid.addWidget(contentCard(), row, col)
             col += 1
-            if col >= 3:  # 3 columns for example
+            if col >= 3:
                 col = 0
                 row += 1
         
